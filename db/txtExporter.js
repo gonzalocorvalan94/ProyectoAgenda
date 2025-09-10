@@ -1,0 +1,1 @@
+/* txtExporter.js: cada vez que se agrega/edita/borra, exporta la agenda completa a agenda.txt. */

@@ -1,0 +1,1 @@
+/* fileManager.js: lee y guarda los contactos en contactos.json. */

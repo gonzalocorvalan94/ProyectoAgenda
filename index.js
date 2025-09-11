@@ -2,4 +2,4 @@
 
 Arranca la aplicación.
 
-Llama al menú principal.*/
+Llama al menú principal. dfgdfg*/

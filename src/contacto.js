@@ -1,12 +1,6 @@
-/* Modelos/clases de la aplicación.
-// la clases plantilla de objetos.
-//nombre telefono y mail.
-/*
 
-*/
+import fs from 'fs';
 
-//Contacto.js: clase Contacto con propiedades nombre, telefono, email. */
-const fs = require("fs");
 class contactos {
     constructor(nombre,apellido,numero,mail) {
         this.nombre = nombre;
@@ -21,8 +15,8 @@ class contactos {
 
 const persona1 = new contactos("Flora","Rodriguez","2494222119","floraRodriguez22@gmail.com");
 const arrayDeContactos = [persona1];
-const textoDeConstactos = arrayDeContactos.map(f => `Nombre: ${f.nombre}, Apellido: ${f.apellido}, Numero de telefono: ${f.numero}, Mail: ${f.mail}`).join("\n");
-fs.writeFile("contactos.txt",textoDeConstactos, (error)=>{
+const textoDeContactos = arrayDeContactos.map(f => `Nombre: ${f.nombre}, Apellido: ${f.apellido}, Numero de telefono: ${f.numero}, Mail: ${f.mail}`).join("\n");
+fs.writeFile("contactos.txt",textoDeContactos, (error)=>{
     if(error){
         console.error("Error al leer el archivo");
         return;

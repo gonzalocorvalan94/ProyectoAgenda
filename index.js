@@ -2,5 +2,6 @@
 
 Arranca la aplicación.
 
-Llama al menú principal.*/
-//hola sere
+
+Llama al menú principal. dfgdfg*/
+

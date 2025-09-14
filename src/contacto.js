@@ -18,10 +18,11 @@ class Contactos {
     this.mail = mail;
   }
   mostrarcontactos() {
-    return `Nombre: ${this.nombre}, Apellido: ${this.apellido}, Numero de telefono: ${this.numero}, Mail: ${this.mail}`;
+    return `Nombre: ${this.nombre}, Numero de telefono: ${this.numero}, Mail: ${this.mail}`;
   }
 }
 function pedirValido(mensaje, validador) {
+  //funcion pedirValido evita repetir muchos while para poder volver a repetir el codigo
   let valor = prompt(mensaje);
   while (!validador(valor)) {
     console.log("Valor inválido, intente nuevamente");
@@ -29,42 +30,70 @@ function pedirValido(mensaje, validador) {
   }
   return valor;
 }
-
-function crearContactos(nombre, numero, mail) {
-  numero = pedirValido("Ingrese numero", validarTelefono);
-  nombre = pedirValido("Ingrese nombre", validarNombre);
-  mail = pedirValido("Ingrese mail", validarEmail);
-
-  const nuevoConctacto = new Contactos(nombre, numero, mail);
-  agenda.push(nuevoConctacto);
-  console.log(`Su contacto a sido creado`);
-}
-function actualizarContacto(arrayDeContactos, datoidentificadorNombre) {
-  console.log(`Buscar el Contacto que desea modificar por su nombre.`);
-  const contacto = arrayDeContactos.find(
-    (c) => c.nombre === datoidentificadorNombre
-  );
-  if (contacto) {
-    let nuevoNombre = prompt("Ingrese el nuevo nombre:");
-    nuevoNombre = pedirValido(nuevoNombre, validarNombre);
-
-    let nuevoNumero = prompt("Ingrese el nuevo número:");
-    nuevoNumero = pedirValido(nuevoNumero, validarTelefono);
-    let nuevoMail = prompt("Ingrese el nuevo mail:");
-    nuevoMail = pedirValido(nuevoMail, validarEmail);
-    contacto.nombre = nuevoNombre;
-    contacto.numero = nuevoNumero;
-    contacto.mail = nuevoMail;
-
-    console.log("Contacto actualizado con éxito!");
-
-    fs.writeFile("contactos.txt", agenda, (error) => {
+//agendaDeContactos => agenda, se podria sacar el parametro y directamente usar agendadentro de la funcion
+function guardarAgenda(agendaDeContactos, mensaje) {
+  //funcion guardarAgenda evitar repetir el modulo fs
+  fs.writeFile(
+    "contactos.txt",
+    JSON.stringify(agendaDeContactos, null, 2),
+    (error) => {
       if (error) {
-        console.error("Error al leer el archivo");
+        console.error("Error al guardar el archivo", error);
         return;
       }
-      console.log("Archivo contactos, creado con exito!");
-    });
+      console.log(mensaje);
+    }
+  );
+}
+
+function crearContactos(agendaDeContactos) {
+  let numero = pedirValido("Ingrese numero", validarTelefono);
+  let nombre = pedirValido("Ingrese nombre", validarNombre);
+  let mail = pedirValido("Ingrese mail", validarEmail);
+
+  const nuevoContacto = new Contactos(nombre, numero, mail);
+  agendaDeContactos.push(nuevoContacto);
+  console.log(`Su contacto a sido creado`);
+
+  guardarAgenda(
+    agendaDeContactos,
+    "Archivo contactos: Se creo con exito el contacto!"
+  );
+}
+function eliminarContacto(agendaDeContactos, nombreBuscado) {
+  console.log("Buscar el contacto que desea eliminar por su nombre.");
+  const contacto = agendaDeContactos.findIndex(
+    (c) => c.nombre === nombreBuscado
+  );
+  if (contacto === -1) {
+    console.log("Su contacto no se encontro ");
+    return;
   }
-  console.log(`Su contacto no se encontro`);
+
+  const [eliminado] = agendaDeContactos.splice(contacto, 1);
+  console.log(`Contacto ${eliminado.nombre} eliminado.`);
+
+  guardarAgenda(agendaDeContactos, "Se eliminó con éxito el contacto!");
+}
+
+function actualizarContacto(agendaDeContactos, nombreBuscado) {
+  console.log("Buscar el Contacto que desea modificar por su nombre.");
+  const contacto = agendaDeContactos.find((c) => c.nombre === nombreBuscado);
+  if (!contacto) {
+    console.log(`Su contacto no se encontro`);
+    return;
+  }
+  let nuevoNombre = pedirValido("Ingrese el nuevo nombre", validarNombre);
+  let nuevoNumero = pedirValido("Ingrese el nuevo numero", validarTelefono);
+  let nuevoMail = pedirValido("Ingrese el nuevo mail", validarEmail);
+  contacto.nombre = nuevoNombre;
+  contacto.numero = nuevoNumero;
+  contacto.mail = nuevoMail;
+
+  console.log("Contacto actualizado con éxito!");
+
+  guardarAgenda(
+    agendaDeContactos,
+    "Archivo contactos: Se actualizó con exito el contacto!"
+  );
 }

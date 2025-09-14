@@ -1,34 +1,70 @@
+/* Modelos/clases de la aplicación.
 
-import fs from 'fs';
+Contacto.js: clase Contacto con propiedades nombre, telefono, email. */
+import fs from "fs";
+import PromptSync from "prompt-sync";
+import {
+  validarTelefono,
+  validarEmail,
+  validarNombre,
+} from "./contactoValidator.js";
+import { agenda } from "../db/agendas.js";
+const prompt = PromptSync();
 
-class contactos {
-    constructor(nombre,apellido,numero,mail) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.numero = numero;
-        this.mail = mail;
-    }
-    mostrarcontactos(){
-        return(`Nombre: ${this.nombre}, Apellido: ${this.apellido}, Numero de telefono: ${this.numero}, Mail: ${this.mail}`);
-    }
+class Contactos {
+  constructor(nombre, numero, mail) {
+    this.nombre = nombre;
+    this.numero = numero;
+    this.mail = mail;
+  }
+  mostrarcontactos() {
+    return `Nombre: ${this.nombre}, Apellido: ${this.apellido}, Numero de telefono: ${this.numero}, Mail: ${this.mail}`;
+  }
+}
+function pedirValido(mensaje, validador) {
+  let valor = prompt(mensaje);
+  while (!validador(valor)) {
+    console.log("Valor inválido, intente nuevamente");
+    valor = prompt(mensaje);
+  }
+  return valor;
 }
 
-const persona1 = new contactos("Flora","Rodriguez","2494222119","floraRodriguez22@gmail.com");
-const arrayDeContactos = [persona1];
-const textoDeContactos = arrayDeContactos.map(f => `Nombre: ${f.nombre}, Apellido: ${f.apellido}, Numero de telefono: ${f.numero}, Mail: ${f.mail}`).join("\n");
-fs.writeFile("contactos.txt",textoDeContactos, (error)=>{
-    if(error){
+function crearContactos(nombre, numero, mail) {
+  numero = pedirValido("Ingrese numero", validarTelefono);
+  nombre = pedirValido("Ingrese nombre", validarNombre);
+  mail = pedirValido("Ingrese mail", validarEmail);
+
+  const nuevoConctacto = new Contactos(nombre, numero, mail);
+  agenda.push(nuevoConctacto);
+  console.log(`Su contacto a sido creado`);
+}
+function actualizarContacto(arrayDeContactos, datoidentificadorNombre) {
+  console.log(`Buscar el Contacto que desea modificar por su nombre.`);
+  const contacto = arrayDeContactos.find(
+    (c) => c.nombre === datoidentificadorNombre
+  );
+  if (contacto) {
+    let nuevoNombre = prompt("Ingrese el nuevo nombre:");
+    nuevoNombre = pedirValido(nuevoNombre, validarNombre);
+
+    let nuevoNumero = prompt("Ingrese el nuevo número:");
+    nuevoNumero = pedirValido(nuevoNumero, validarTelefono);
+    let nuevoMail = prompt("Ingrese el nuevo mail:");
+    nuevoMail = pedirValido(nuevoMail, validarEmail);
+    contacto.nombre = nuevoNombre;
+    contacto.numero = nuevoNumero;
+    contacto.mail = nuevoMail;
+
+    console.log("Contacto actualizado con éxito!");
+
+    fs.writeFile("contactos.txt", agenda, (error) => {
+      if (error) {
         console.error("Error al leer el archivo");
         return;
-    }
-    console.log("Archivo contactos, creado con exito!");
-    fs.readFile("contactos.txt","utf8",(error,data) => {
-        if(error){
-            console.error("error al leer el Archivo", error);
-            return;
-        }
-        console.log("\nContenido del archivo:");
-        console.log(data);
+      }
+      console.log("Archivo contactos, creado con exito!");
     });
-
-});
+  }
+  console.log(`Su contacto no se encontro`);
+}

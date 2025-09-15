@@ -1,0 +1,82 @@
+=== Agenda de Contactos ===
+
+1. Nombre: Susana
+   Número: 123123123
+   Mail: asd@gmail.com
+
+2. Nombre: Juan
+   Número: 2494012345
+   Mail: juan@gmail.com
+
+3. Nombre: Ana
+   Número: 2494023456
+   Mail: ana@gmail.com
+
+4. Nombre: Carlos
+   Número: 2494034567
+   Mail: carlos@gmail.com
+
+5. Nombre: María
+   Número: 2494045678
+   Mail: maria@gmail.com
+
+6. Nombre: Esteban
+   Número: 2494056789
+   Mail: esteban@gmail.com
+
+7. Nombre: Valeria
+   Número: 2494067890
+   Mail: valeria@gmail.com
+
+8. Nombre: Federico
+   Número: 2494078901
+   Mail: federico@gmail.com
+
+9. Nombre: Julieta
+   Número: 2494089012
+   Mail: julieta@gmail.com
+
+10. Nombre: Martín
+   Número: 2494090123
+   Mail: martin@gmail.com
+
+11. Nombre: Laura
+   Número: 2494101234
+   Mail: laura@gmail.com
+
+12. Nombre: Diego
+   Número: 2494112345
+   Mail: diego@gmail.com
+
+13. Nombre: Carolina
+   Número: 2494123456
+   Mail: carolina@gmail.com
+
+14. Nombre: Sofía
+   Número: 2494134567
+   Mail: sofia@gmail.com
+
+15. Nombre: Nicolás
+   Número: 2494145678
+   Mail: nicolas@gmail.com
+
+16. Nombre: Patricia
+   Número: 2494156789
+   Mail: patricia@gmail.com
+
+17. Nombre: Sebastián
+   Número: 2494167890
+   Mail: sebastian@gmail.com
+
+18. Nombre: Lorena
+   Número: 2494178901
+   Mail: lorena@gmail.com
+
+19. Nombre: Matías
+   Número: 2494189012
+   Mail: matias@gmail.com
+
+20. Nombre: Gabi
+   Número: 123123123
+   Mail: asd@gmail.com
+

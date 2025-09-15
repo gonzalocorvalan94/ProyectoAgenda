@@ -3,6 +3,7 @@ import PromptSync from 'prompt-sync';
 import { validarOpcion } from '../validators/contactoValidator.js';
 import { Contactos } from '../src/contacto.js';
 import {
+  listarContactos,
   crearContactos,
   actualizarContacto,
   eliminarContacto,
@@ -36,7 +37,7 @@ export function menu() {
 
     switch (opcion) {
       case 1:
-        console.log('Listar'); //Aca tendria que ir la funcion correspondiente
+        listarContactos();
         break;
       case 2:
         crearContactos();
@@ -55,4 +56,3 @@ export function menu() {
   }
 }
 
-menu();

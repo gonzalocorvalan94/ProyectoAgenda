@@ -1,7 +1,3 @@
-/*1. index.js
+import { menu } from './cli/menu.js';
 
-Arranca la aplicación.
-
-
-Llama al menú principal. dfgdfg*/
-
+menu();

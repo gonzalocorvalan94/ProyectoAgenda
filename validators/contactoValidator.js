@@ -1,7 +1,7 @@
-/* Funciones para verificar datos de entrada.
+import PromptSync from "prompt-sync";
+import chalk from "chalk";
 
-Ejemplo:
-*/
+const prompt = PromptSync();
 
 export function validarTelefono(telefono) {
   const numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -20,7 +20,7 @@ export function validarTelefono(telefono) {
 }
 
 export function validarEmail(mail) {
-  // trim() para evitar espacios al inicio/final
+  
   const limpio = mail.trim();
 
   if (!limpio.includes('@') || !limpio.includes('.')) {
@@ -45,4 +45,14 @@ export function validarNombre(nombre) {
 export function validarOpcion(opcion) {
   const opciones = [1, 2, 3, 4, 5];
   return opciones.includes(opcion); // devuelve true si está en el array
+}
+
+export function pedirValido(mensaje, validador) {
+  //funcion pedirValido evita repetir muchos while para poder volver a repetir el codigo
+  let valor = prompt(mensaje);
+  while (!validador(valor)) {
+    console.log("Valor inválido, intente nuevamente");
+    valor = prompt(mensaje);
+  }
+  return valor;
 }

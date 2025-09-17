@@ -69,8 +69,8 @@
    Mail: sebastian@gmail.com
 
 18. Nombre: Lorena
-   Número: 2494178901
-   Mail: lorena@gmail.com
+   Número: 2494556611
+   Mail: lore@gmail.com
 
 19. Nombre: Matías
    Número: 2494189012
@@ -83,4 +83,8 @@
 21. Nombre: sol
    Número: 2494668844
    Mail: sol@gmail.com
+
+22. Nombre: Sol
+   Número: 123456
+   Mail: Sol@gmail.com
 

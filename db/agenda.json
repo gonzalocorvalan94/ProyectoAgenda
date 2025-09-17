@@ -86,8 +86,8 @@
   },
   {
     "nombre": "Lorena",
-    "numero": "2494178901",
-    "mail": "lorena@gmail.com"
+    "numero": "2494556611",
+    "mail": "lore@gmail.com"
   },
   {
     "nombre": "Matías",
@@ -103,5 +103,10 @@
     "nombre": "sol",
     "numero": "2494668844",
     "mail": "sol@gmail.com"
+  },
+  {
+    "nombre": "Sol",
+    "numero": "123456",
+    "mail": "Sol@gmail.com"
   }
 ]

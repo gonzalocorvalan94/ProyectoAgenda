@@ -8,24 +8,28 @@ export function validarTelefono(telefono) {
 
   for (let i = 0; i < telefono.length; i++) {
     if (!numeros.includes(Number(telefono[i]))) {
-      console.log(chalk.red('Número de teléfono inválido'));
+      console.log(chalk.red("Número de teléfono inválido"));
       return false;
     }
   }
   if (telefono.length < 6) {
-    console.log(chalk.red('El telefono debe ser contener al menos 6 números'));
+    console.log(chalk.red("El telefono debe ser contener al menos 6 números"));
     return false;
   }
   return true;
 }
 
 export function validarEmail(mail) {
-  
   const limpio = mail.trim();
-
-  if (!limpio.includes('@') || !limpio.includes('.')) {
+  const dominiosValidos = [".com", ".com.ar", ".hotmail", ".hotmail.com"];
+  if (
+    !limpio.includes("@") ||
+    !dominiosValidos.some((d) => limpio.endsWith(d))
+  ) {
     console.log(
-      chalk.red('El mail es inválido (debe tener @ y un dominio con .)')
+      chalk.red(
+        "El mail es inválido (debe tener @ y un dominio valido como: .com .com.ar .hotmail o .hotmail.com)"
+      )
     );
     return false;
   }
@@ -35,8 +39,8 @@ export function validarEmail(mail) {
 
 export function validarNombre(nombre) {
   let limpio = nombre.trim();
-  if (limpio.length < 2) {
-    console.log(chalk.red('El nombre debe contener al menos 3 letras'));
+  if (limpio.length < 3) {
+    console.log(chalk.red("El nombre debe contener al menos 3 letras"));
     return false;
   }
   return true;
